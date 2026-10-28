@@ -1,29 +1,72 @@
 [
   {
-    "nombre": "Épico Restaurante Bar",
-    "tipo": "Restaurante y bar: hamburguesas, entradas, platos fuertes y cócteles",
-    "direccion": "Cra. 21B # 15A-45, Magangué",
-    "telefono": "305 362 9190",
-    "horario": "Todos los días, 4:30 p.m. - 12:00 a.m.",
-    "instagram": "epico_restaurantebar",
-    "web": "https://epicorestaurantebar.com"
+    "id": "restaurantes",
+    "nombre": "Restaurantes",
+    "icono": "🍽️",
+    "descripcion": "Servicio a la mesa, carta completa y ambiente para sentarse con calma.",
+    "restaurantes": [
+      {
+        "nombre": "Épico Restaurante Bar",
+        "tipo": "Restaurante y bar: hamburguesas, entradas, platos fuertes y cócteles",
+        "direccion": "Cra. 21B # 15A-45, Magangué",
+        "telefono": "305 362 9190",
+        "horario": "Todos los días, 4:30 p.m. - 12:00 a.m.",
+        "instagram": "epico_restaurantebar",
+        "web": "https://epicorestaurantebar.com"
+      },
+      {
+        "nombre": "La Brasilera",
+        "tipo": "Asados, comida oriental (arroz chino), pastas y platos típicos",
+        "direccion": "Calle 16 # 13-143, barrio San José, Magangué",
+        "telefono": "311 755 4413",
+        "horario": "10:00 a.m. - 10:30 p.m.",
+        "instagram": "labrasirest",
+        "web": "https://queresto.com/Restaurantelabrasilera"
+      },
+      {
+        "nombre": "La Serrata Steak House",
+        "tipo": "Parrilla y steak house: carnes, hamburguesas, pizzas, pastas y cócteles",
+        "direccion": "Cra. 15 # 16B-63, barrio San José, Magangué",
+        "telefono": "305 310 5599",
+        "horario": "Lun a Jue: 12:00 m. - 3:00 p.m. y 6:00 p.m. - 10:00 p.m. · Vie a Dom: hasta las 10:30 p.m.",
+        "instagram": "laserratahouse",
+        "web": "https://menu.pirpos.com/menu/659ef65ab7533905eae6b110"
+      }
+    ]
   },
   {
-    "nombre": "La Brasilera",
-    "tipo": "Asados, comida oriental (arroz chino), pastas y platos típicos",
-    "direccion": "Calle 16 # 13-143, barrio San José, Magangué",
-    "telefono": "311 755 4413",
-    "horario": "10:00 a.m. - 10:30 p.m.",
-    "instagram": "labrasirest",
-    "web": "https://queresto.com/Restaurantelabrasilera"
+    "id": "comidas-rapidas",
+    "nombre": "Comidas rápidas",
+    "icono": "🍔",
+    "descripcion": "Perros, salchipapas, hamburguesas, desgranados y más, en locales sencillos y con mesas afuera.",
+    "restaurantes": []
   },
   {
-    "nombre": "La Serrata Steak House",
-    "tipo": "Parrilla y steak house: carnes, hamburguesas, pizzas, pastas y cócteles",
-    "direccion": "Cra. 15 # 16B-63, barrio San José, Magangué",
-    "telefono": "305 310 5599",
-    "horario": "Lun a Jue: 12:00 m. - 3:00 p.m. y 6:00 p.m. - 10:00 p.m. · Vie a Dom: hasta las 10:30 p.m.",
-    "instagram": "laserratahouse",
-    "web": "https://menu.pirpos.com/menu/659ef65ab7533905eae6b110"
+    "id": "comida-callejera",
+    "nombre": "Comida callejera",
+    "icono": "🔥",
+    "descripcion": "Carritos y puestos: chuzos, chorizos asados, arepas y fritos.",
+    "restaurantes": []
+  },
+  {
+    "id": "comida-tipica",
+    "nombre": "Comida típica",
+    "icono": "🐟",
+    "descripcion": "Sabor costeño y casero: pescado, sancocho, mote de queso y corrientazo.",
+    "restaurantes": []
+  },
+  {
+    "id": "cafes-panaderias",
+    "nombre": "Cafés y panaderías",
+    "icono": "☕",
+    "descripcion": "Desayunos, café, pandebono, pan y algo dulce.",
+    "restaurantes": []
+  },
+  {
+    "id": "postres-heladerias",
+    "nombre": "Postres y heladerías",
+    "icono": "🍦",
+    "descripcion": "Helados, raspados, jugos y postres.",
+    "restaurantes": []
   }
 ]

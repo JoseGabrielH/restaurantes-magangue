@@ -11,6 +11,11 @@ Directorio web de restaurantes de Magangué, Bolívar, Colombia.
 
 ## Cómo actualizar restaurantes
 
+El archivo es una lista de **categorías** (Restaurantes, Comidas rápidas, Comida callejera,
+Comida típica, Cafés y panaderías, Postres y heladerías). Cada categoría tiene su lista
+`restaurantes`. Para agregar un lugar, ponlo dentro de la lista de su categoría.
+Si una categoría está vacía (`[]`), la página muestra "Se añaden pronto".
+
 Cada restaurante debe tener **todos** estos campos (para que la información sea uniforme):
 
 | Campo | Ejemplo |

@@ -1,4 +1,4 @@
-// Carga la lista de restaurantes desde data/restaurantes.json y la muestra en la página.
+// Carga las categorías y sus restaurantes desde data/restaurantes.json y los muestra.
 // Para agregar o editar restaurantes, solo modifica ese archivo JSON.
 
 document.getElementById("anio").textContent = new Date().getFullYear();
@@ -32,29 +32,76 @@ function tarjeta(r) {
 
   return `
     <article class="tarjeta">
-      <h2>${escapar(r.nombre)}</h2>
+      <h3>${escapar(r.nombre)}</h3>
       ${lineas.join("\n      ")}
     </article>`;
 }
 
-async function cargarRestaurantes() {
-  const lista = document.getElementById("lista");
+// Arma una sección completa (título + restaurantes, o "se añaden pronto" si está vacía).
+function seccion(c) {
+  const restaurantes = c.restaurantes || [];
+  const cuerpo = restaurantes.length
+    ? `<div class="lista">${restaurantes.map(tarjeta).join("")}</div>`
+    : `<p class="pronto">Se añaden pronto.</p>`;
+
+  return `
+    <section id="${escapar(c.id)}" class="seccion">
+      <h2>${escapar(c.icono)} ${escapar(c.nombre)}</h2>
+      ${c.descripcion ? `<p class="descripcion">${escapar(c.descripcion)}</p>` : ""}
+      ${cuerpo}
+    </section>`;
+}
+
+// Botón del menú de categorías (enlace a la sección correspondiente).
+function boton(c) {
+  const total = (c.restaurantes || []).length;
+  return `<a href="#${escapar(c.id)}" data-id="${escapar(c.id)}">${escapar(c.icono)} ${escapar(c.nombre)} <span class="contador">${total}</span></a>`;
+}
+
+// Resalta en el menú la categoría que se está viendo en pantalla.
+function resaltarCategoriaVisible() {
+  const enlaces = document.querySelectorAll("#categorias a");
+  const marcar = (id) => {
+    enlaces.forEach((a) => {
+      const activo = a.dataset.id === id;
+      a.classList.toggle("activo", activo);
+      if (activo) {
+        // Desliza solo la barra de categorías (en celular) para que el botón activo quede visible
+        const nav = a.parentElement;
+        const izq = a.offsetLeft; // la barra es "sticky", así que offsetLeft ya es relativo a ella
+        if (izq < nav.scrollLeft || izq + a.offsetWidth > nav.scrollLeft + nav.clientWidth) {
+          nav.scrollLeft = izq - 16;
+        }
+      }
+    });
+  };
+
+  const observador = new IntersectionObserver(
+    (entradas) => {
+      entradas.forEach((e) => {
+        if (e.isIntersecting) marcar(e.target.id);
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px" }
+  );
+  document.querySelectorAll(".seccion").forEach((s) => observador.observe(s));
+}
+
+async function cargar() {
+  const contenido = document.getElementById("contenido");
   try {
     // "no-store" evita que el navegador muestre una versión vieja de los datos
     const resp = await fetch("data/restaurantes.json", { cache: "no-store" });
     if (!resp.ok) throw new Error("HTTP " + resp.status);
-    const restaurantes = await resp.json();
+    const categorias = await resp.json();
 
-    if (restaurantes.length === 0) {
-      lista.textContent = "Aún no hay restaurantes registrados.";
-      return;
-    }
-
-    lista.innerHTML = restaurantes.map(tarjeta).join("");
+    document.getElementById("categorias").innerHTML = categorias.map(boton).join("");
+    contenido.innerHTML = categorias.map(seccion).join("");
+    resaltarCategoriaVisible();
   } catch (err) {
     console.error(err);
-    lista.textContent = "No se pudieron cargar los restaurantes.";
+    contenido.textContent = "No se pudieron cargar los restaurantes.";
   }
 }
 
-cargarRestaurantes();
+cargar();
