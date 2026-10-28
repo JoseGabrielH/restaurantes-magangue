@@ -26,7 +26,7 @@ function tarjeta(r) {
     enlaces.push(`<a href="https://www.instagram.com/${usuario}/" target="_blank" rel="noopener">Instagram</a>`);
   }
   if (r.web && /^https?:\/\//.test(r.web)) {
-    enlaces.push(`<a href="${escapar(r.web)}" target="_blank" rel="noopener">Sitio web</a>`);
+    enlaces.push(`<a href="${escapar(r.web)}" target="_blank" rel="noopener">Ver menú</a>`);
   }
   if (enlaces.length) lineas.push(`<p class="enlaces">${enlaces.join(" · ")}</p>`);
 

@@ -11,6 +11,18 @@ Directorio web de restaurantes de Magangué, Bolívar, Colombia.
 
 ## Cómo actualizar restaurantes
 
+Cada restaurante debe tener **todos** estos campos (para que la información sea uniforme):
+
+| Campo | Ejemplo |
+|---|---|
+| `nombre` | La Serrata Steak House |
+| `tipo` | Parrilla y steak house: carnes, hamburguesas... |
+| `direccion` | Cra. 15 # 16B-63, barrio San José, Magangué |
+| `telefono` | 305 310 5599 |
+| `horario` | Lun a Jue: 12:00 m. - 3:00 p.m. ... |
+| `instagram` | laserratahouse (solo el usuario, sin @) |
+| `web` | Enlace al menú o sitio web (https://...) |
+
 1. Edita `data/restaurantes.json` (agrega, quita o cambia restaurantes).
 2. Guarda y sube el cambio a GitHub:
    ```

@@ -10,12 +10,20 @@
   },
   {
     "nombre": "La Brasilera",
-    "telefono": "314 610 0753"
+    "tipo": "Asados, comida oriental (arroz chino), pastas y platos típicos",
+    "direccion": "Calle 16 # 13-143, barrio San José, Magangué",
+    "telefono": "311 755 4413",
+    "horario": "10:00 a.m. - 10:30 p.m.",
+    "instagram": "labrasirest",
+    "web": "https://queresto.com/Restaurantelabrasilera"
   },
   {
-    "nombre": "La Serrata",
-    "direccion": "Cra. 15 # 16B-63, Magangué",
+    "nombre": "La Serrata Steak House",
+    "tipo": "Parrilla y steak house: carnes, hamburguesas, pizzas, pastas y cócteles",
+    "direccion": "Cra. 15 # 16B-63, barrio San José, Magangué",
     "telefono": "305 310 5599",
-    "horario": "Lun a Jue: 12:00 m. - 3:00 p.m. y 6:00 p.m. - 10:00 p.m. · Vie a Dom: hasta las 10:30 p.m."
+    "horario": "Lun a Jue: 12:00 m. - 3:00 p.m. y 6:00 p.m. - 10:00 p.m. · Vie a Dom: hasta las 10:30 p.m.",
+    "instagram": "laserratahouse",
+    "web": "https://menu.pirpos.com/menu/659ef65ab7533905eae6b110"
   }
 ]
