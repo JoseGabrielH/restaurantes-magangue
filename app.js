@@ -9,6 +9,34 @@ function escapar(texto) {
   return div.innerHTML;
 }
 
+// Arma la tarjeta de un restaurante. Los campos vacíos simplemente no se muestran.
+function tarjeta(r) {
+  const lineas = [];
+  if (r.tipo) lineas.push(`<p class="tipo">${escapar(r.tipo)}</p>`);
+  if (r.direccion) lineas.push(`<p>📍 ${escapar(r.direccion)}</p>`);
+  if (r.telefono) {
+    const tel = r.telefono.replace(/\D/g, "");
+    lineas.push(`<p>📞 <a href="tel:+57${tel}">${escapar(r.telefono)}</a></p>`);
+  }
+  if (r.horario) lineas.push(`<p>🕒 ${escapar(r.horario)}</p>`);
+
+  const enlaces = [];
+  if (r.instagram) {
+    const usuario = encodeURIComponent(r.instagram.replace(/^@/, ""));
+    enlaces.push(`<a href="https://www.instagram.com/${usuario}/" target="_blank" rel="noopener">Instagram</a>`);
+  }
+  if (r.web && /^https?:\/\//.test(r.web)) {
+    enlaces.push(`<a href="${escapar(r.web)}" target="_blank" rel="noopener">Sitio web</a>`);
+  }
+  if (enlaces.length) lineas.push(`<p class="enlaces">${enlaces.join(" · ")}</p>`);
+
+  return `
+    <article class="tarjeta">
+      <h2>${escapar(r.nombre)}</h2>
+      ${lineas.join("\n      ")}
+    </article>`;
+}
+
 async function cargarRestaurantes() {
   const lista = document.getElementById("lista");
   try {
@@ -22,18 +50,7 @@ async function cargarRestaurantes() {
       return;
     }
 
-    lista.innerHTML = restaurantes
-      .map(
-        (r) => `
-        <article class="tarjeta">
-          <h2>${escapar(r.nombre)}</h2>
-          <p class="tipo">${escapar(r.tipo)}</p>
-          <p>📍 ${escapar(r.direccion)}</p>
-          <p>📞 ${escapar(r.telefono)}</p>
-          <p>🕒 ${escapar(r.horario)}</p>
-        </article>`
-      )
-      .join("");
+    lista.innerHTML = restaurantes.map(tarjeta).join("");
   } catch (err) {
     console.error(err);
     lista.textContent = "No se pudieron cargar los restaurantes.";

@@ -38,3 +38,5 @@ main {
 .tarjeta h2 { margin: 0 0 .3rem; font-size: 1.2rem; }
 .tarjeta p { margin: .3rem 0; }
 .tipo { color: #777; font-style: italic; }
+.tarjeta a { color: #0a66c2; }
+.enlaces { margin-top: .6rem; }

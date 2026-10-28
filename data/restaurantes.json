@@ -1,23 +1,21 @@
 [
   {
-    "nombre": "Restaurante de Ejemplo 1",
-    "tipo": "Comida típica costeña",
-    "direccion": "Calle 1 # 2-34, Centro, Magangué",
-    "telefono": "300 000 0001",
-    "horario": "Lun a Sáb, 11:00 a.m. - 9:00 p.m."
+    "nombre": "Épico Restaurante Bar",
+    "tipo": "Restaurante y bar: hamburguesas, entradas, platos fuertes y cócteles",
+    "direccion": "Cra. 21B # 15A-45, Magangué",
+    "telefono": "305 362 9190",
+    "horario": "Todos los días, 4:30 p.m. - 12:00 a.m.",
+    "instagram": "epico_restaurantebar",
+    "web": "https://epicorestaurantebar.com"
   },
   {
-    "nombre": "Restaurante de Ejemplo 2",
-    "tipo": "Pescados y mariscos",
-    "direccion": "Carrera 5 # 10-20, Albarrada, Magangué",
-    "telefono": "300 000 0002",
-    "horario": "Todos los días, 12:00 p.m. - 10:00 p.m."
+    "nombre": "La Brasilera",
+    "telefono": "314 610 0753"
   },
   {
-    "nombre": "Restaurante de Ejemplo 3",
-    "tipo": "Comidas rápidas",
-    "direccion": "Calle 16 # 8-15, Magangué",
-    "telefono": "300 000 0003",
-    "horario": "Mar a Dom, 5:00 p.m. - 11:00 p.m."
+    "nombre": "La Serrata",
+    "direccion": "Cra. 15 # 16B-63, Magangué",
+    "telefono": "305 310 5599",
+    "horario": "Lun a Jue: 12:00 m. - 3:00 p.m. y 6:00 p.m. - 10:00 p.m. · Vie a Dom: hasta las 10:30 p.m."
   }
 ]
