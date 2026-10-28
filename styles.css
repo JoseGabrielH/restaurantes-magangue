@@ -66,8 +66,10 @@ main {
 
 .seccion {
   padding: 1rem 0 1.5rem;
-  scroll-margin-top: 4rem; /* para que el menú fijo no tape el título */
 }
+/* La última sección ocupa al menos la pantalla, para que cualquier categoría
+   (aunque esté vacía) pueda quedar arriba al tocar su botón */
+.seccion:last-child { min-height: calc(100vh - 4rem); }
 .seccion h2 { margin: 0 0 .2rem; }
 .descripcion { margin: 0 0 1rem; color: #666; }
 .pronto {

@@ -58,16 +58,22 @@ function boton(c) {
   return `<a href="#${escapar(c.id)}" data-id="${escapar(c.id)}">${escapar(c.icono)} ${escapar(c.nombre)} <span class="contador">${total}</span></a>`;
 }
 
-// Resalta en el menú la categoría que se está viendo en pantalla.
-function resaltarCategoriaVisible() {
-  const enlaces = document.querySelectorAll("#categorias a");
+// Navegación por categorías:
+// - Al tocar un botón, la página baja a esa sección y ese botón queda marcado.
+// - Al desplazarse manualmente, se marca la categoría que está debajo de la barra.
+function activarNavegacion() {
+  const nav = document.getElementById("categorias");
+  const enlaces = [...nav.querySelectorAll("a")];
+  const secciones = [...document.querySelectorAll(".seccion")];
+  let bloqueado = false; // mientras la página se desplaza por un clic, no recalcular
+  let temporizador;
+
   const marcar = (id) => {
     enlaces.forEach((a) => {
       const activo = a.dataset.id === id;
       a.classList.toggle("activo", activo);
       if (activo) {
         // Desliza solo la barra de categorías (en celular) para que el botón activo quede visible
-        const nav = a.parentElement;
         const izq = a.offsetLeft; // la barra es "sticky", así que offsetLeft ya es relativo a ella
         if (izq < nav.scrollLeft || izq + a.offsetWidth > nav.scrollLeft + nav.clientWidth) {
           nav.scrollLeft = izq - 16;
@@ -76,15 +82,43 @@ function resaltarCategoriaVisible() {
     });
   };
 
-  const observador = new IntersectionObserver(
-    (entradas) => {
-      entradas.forEach((e) => {
-        if (e.isIntersecting) marcar(e.target.id);
-      });
-    },
-    { rootMargin: "-40% 0px -55% 0px" }
+  const irA = (id, suave) => {
+    const destino = document.getElementById(id);
+    if (!destino) return;
+    marcar(id);
+    bloqueado = true;
+    clearTimeout(temporizador);
+    temporizador = setTimeout(() => { bloqueado = false; }, 1500); // respaldo si no existe "scrollend"
+    const y = destino.getBoundingClientRect().top + window.scrollY - nav.offsetHeight;
+    window.scrollTo({ top: y, behavior: suave ? "smooth" : "auto" });
+    history.replaceState(null, "", "#" + id);
+  };
+
+  enlaces.forEach((a) =>
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      irA(a.dataset.id, true);
+    })
   );
-  document.querySelectorAll(".seccion").forEach((s) => observador.observe(s));
+
+  // Categoría visible = la última sección cuyo título ya pasó por debajo de la barra
+  const actualizar = () => {
+    if (bloqueado) return;
+    const limite = nav.offsetHeight + 10;
+    let actual = secciones[0];
+    for (const s of secciones) {
+      if (s.getBoundingClientRect().top <= limite) actual = s;
+    }
+    if (actual) marcar(actual.id);
+  };
+  window.addEventListener("scroll", actualizar, { passive: true });
+  // Al terminar el desplazamiento de un clic, se libera el bloqueo
+  window.addEventListener("scrollend", () => { bloqueado = false; });
+
+  // Si se entra con un enlace directo (ej. .../#comida-tipica), ir a esa sección
+  const inicial = decodeURIComponent(location.hash.slice(1));
+  if (inicial && document.getElementById(inicial)) irA(inicial, false);
+  else actualizar();
 }
 
 async function cargar() {
@@ -97,7 +131,7 @@ async function cargar() {
 
     document.getElementById("categorias").innerHTML = categorias.map(boton).join("");
     contenido.innerHTML = categorias.map(seccion).join("");
-    resaltarCategoriaVisible();
+    activarNavegacion();
   } catch (err) {
     console.error(err);
     contenido.textContent = "No se pudieron cargar los restaurantes.";
